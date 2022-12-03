@@ -1,4 +1,4 @@
-from .solution import get_duplicate_item, split_string, get_score, star1, star2
+from .solution import get_duplicate_item, split_string, get_score, star1, get_badge, star2
 
 
 TEST_INPUT = """vJrwpWtwJgWrhcsFMMfFFhFp
@@ -22,3 +22,14 @@ def test_get_score():
 
 def test_star1():
   assert star1(TEST_INPUT) == 157
+
+def test_get_badge():
+  assert get_badge("""vJrwpWtwJgWrhcsFMMfFFhFp
+jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL
+PmmdzqPrVvPwwTWBwg""".split("\n")) == "r"
+  assert get_badge("""wMqvLMZHhHMvwLHjbvcjnnSBnvTQFn
+ttgJtRGJQctTZtZT
+CrZsJsPPZsGzwwsLwLmpwMDw""".split("\n")) == "Z"
+
+def test_star2():
+  assert star2(TEST_INPUT) == 70
