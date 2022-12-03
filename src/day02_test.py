@@ -2,9 +2,9 @@ from .day02 import get_hand, hand_score, is_win, round_score, star1, star2
 
 
 def test_is_win():
-    assert is_win("A", "Y") == True
-    assert is_win("B", "X") == False
-    assert is_win("C", "Z") == False
+    assert is_win("A", "Y") is True
+    assert is_win("B", "X") is False
+    assert is_win("C", "Z") is False
 
 
 def test_round_score():

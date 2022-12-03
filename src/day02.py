@@ -62,7 +62,7 @@ def get_hand(sign1: str, result: str) -> str:
     return "-"
 
 
-def star1(input) -> None:
+def star1(input) -> int:
     score = 0
     for line in input:
         sign1, sign2 = line.strip().split(" ")
@@ -70,7 +70,7 @@ def star1(input) -> None:
     return score
 
 
-def star2(input) -> None:
+def star2(input) -> int:
     score = 0
     for line in input:
         sign1, result = line.strip().split(" ")
@@ -81,7 +81,6 @@ def star2(input) -> None:
 
 def read_input(filepath: str) -> list[str]:
     """Read input."""
-    input = list()
     with open(filepath, "r") as f:
         return [line.strip() for line in f.readlines()]
 

@@ -14,6 +14,7 @@ def star_2() -> None:
 def read_input(filepath: str) -> list[list[int]]:
     """Read input and parse it."""
     input = list()
+    entry: list
     with open(filepath, "r") as f:
         entry = list()
         for line in f:

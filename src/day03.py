@@ -8,17 +8,16 @@ def get_duplicate_item(list1: str, list2: str) -> str:
 
 
 def split_string(text: str) -> tuple[str, str]:
-    l = len(text)
-    return (text[0 : l // 2], text[l // 2 :])
+    s = len(text)
+    return (text[0 : s // 2], text[s // 2 :])
 
 
 def get_score(item: str) -> int:
     """Calculate the item score."""
     n = ord(item[0]) - 96  # offset to "a"
     if n <= 0:
-        return (
-            n + 32 + 26
-        )  # uppercase letters have smaller offset than lower case -> compensate for offset and add 26 priorities for lowercase
+        return n + 32 + 26  # uppercase letters have smaller offset than lower case
+        # -> compensate for offset and add 26 priorities for lowercase
     else:
         return n
 
@@ -59,7 +58,6 @@ def star2(input) -> int:
 
 def read_input(filepath: str) -> list[str]:
     """Read input."""
-    input = list()
     with open(filepath, "r") as f:
         return [line.strip() for line in f.readlines()]
 
