@@ -1,4 +1,4 @@
-from .solution import (
+from .day03 import (
     get_duplicate_item,
     split_string,
     get_score,

@@ -1,4 +1,4 @@
-from solution import get_message
+from .day00 import get_message
 
 
 def test_get_message():

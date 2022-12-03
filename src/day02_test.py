@@ -1,4 +1,4 @@
-from .solution import get_hand, hand_score, is_win, round_score, star1, star2
+from .day02 import get_hand, hand_score, is_win, round_score, star1, star2
 
 
 def test_is_win():

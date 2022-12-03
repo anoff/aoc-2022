@@ -65,5 +65,5 @@ def read_input(filepath: str) -> list[str]:
 
 
 if __name__ == "__main__":
-    print(f"Star1: {star1(read_input('input.txt'))}")
-    print(f"Star2: {star2(read_input('input.txt'))}")
+    print(f"Star1: {star1(read_input('day03.txt'))}")
+    print(f"Star2: {star2(read_input('day03.txt'))}")
