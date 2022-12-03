@@ -12,8 +12,7 @@ def star_2() -> None:
 
 
 def read_input(filepath: str) -> list[list[int]]:
-    """Read input and parse it.
-    """
+    """Read input and parse it."""
     input = list()
     with open(filepath, "r") as f:
         entry = list()
@@ -26,6 +25,7 @@ def read_input(filepath: str) -> list[list[int]]:
     if len(entry):
         input.append(entry)
     return input
+
 
 if __name__ == "__main__":
     star_1()
