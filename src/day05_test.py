@@ -28,4 +28,4 @@ def test_star1():
 
 
 def test_star2():
-    assert star2(TEST_INPUT) == 4
+    assert star2(TEST_INPUT) == "MCD"

@@ -7,17 +7,26 @@ Move = TypedDict("Move", {"from": int, "to": int, "count": int})
 def star1(text: list[str]) -> str:
     crates, moves = parse_input(text)
     for mv in moves:
+        f = mv["from"] - 1  # compensate for 0-offset
+        t = mv["to"] - 1
         for i in range(0, mv["count"]):
-            f = mv["from"] - 1  # compensate for 0-offset
-            t = mv["to"] - 1
             crates[t].insert(0, crates[f].pop(0))
 
     tops = "".join([c[0] for c in crates])
     return tops
 
 
-def star2(text: list[str]) -> int:
-    pass
+def star2(text: list[str]) -> str:
+    crates, moves = parse_input(text)
+    for mv in moves:
+        f = mv["from"] - 1  # compensate for 0-offset
+        t = mv["to"] - 1
+        for i in range(0, mv["count"]):
+            c = crates[f].pop(0)
+            crates[t].insert(i, c)
+
+    tops = "".join([c[0] for c in crates])
+    return tops
 
 
 def read_input(filepath: str) -> list[str]:
@@ -50,7 +59,6 @@ def parse_input(text: list[str]) -> tuple[list[list[str]], list[Move]]:
             pos = 1 + (ix * 4)
             if row[pos].strip() != "":
                 crates[ix].append(row[pos])
-    print(crates)
     return (crates, moves)
 
 
