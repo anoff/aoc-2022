@@ -1,16 +1,15 @@
+# flake8: noqa
 from .day05 import star1, star2, parse_input
 
+TEST_INPUT = """    [D]    
+[N] [C]    
+[Z] [M] [P]
+ 1   2   3 
 
-TEST_INPUT = """    [D]    """  # noqa: W291
-"""[N] [C]    """  # noqa: W291
-"""[Z] [M] [P]"""
-""" 1   2   3 """  # noqa: W291
-"""
 move 1 from 2 to 1
 move 3 from 1 to 3
 move 2 from 2 to 1
-move 1 from 1 to 2
-""".split(
+move 1 from 1 to 2""".split(
     "\n"
 )
 
