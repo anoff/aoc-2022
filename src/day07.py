@@ -4,6 +4,8 @@ from os import path
 
 
 class File:
+    """A single file."""
+
     name: str
     size: int
 
@@ -13,13 +15,15 @@ class File:
 
 
 class Dir:
+    """Directory possibly containing others."""
+
     dirs: list[Dir]
     files: list[File]
     path: str
     name: str
     parent: Union[Dir, None]
 
-    def __init__(self, name: str, parent: Dir):
+    def __init__(self, name: str, parent: Union[Dir, None]):
         self.name = name
         self.files = list()
         self.dirs = list()
@@ -31,6 +35,7 @@ class Dir:
             self.parent = None
 
     def add(self, item: Union[Dir, File]) -> Dir:
+        """Add an item to the directory."""
         if isinstance(item, File):
             self.files.append(item)
         elif isinstance(item, Dir):
@@ -52,13 +57,14 @@ class Dir:
 
     def get_subdirs(self) -> list[Dir]:
         """Get all sub directories (recursively)."""
-        dirs = self.dirs
+        dirs = list(self.dirs)
         for d in dirs:
             dirs += d.get_subdirs()
-        return dirs
+        return list(set(dirs))
 
 
 def build_tree(lines: list[str]) -> Dir:
+    """Build a directory tree based on command logs."""
     root = Dir("/", None)
     curdir = root
     for line in lines:
@@ -84,24 +90,28 @@ def build_tree(lines: list[str]) -> Dir:
             curdir.add(File(name, size))
     return root
 
+
 def star1(lines: list[str]) -> int:
+    """Part1."""
     root = build_tree(lines)
     dirs = root.get_subdirs()
     total = 0
     for d in dirs:
         size = d.get_size()
+        print(size, d.path)
         if size <= 100000:
             total += size
     return total
 
 
 def star2(text: str) -> int:
+    """Part2."""
     pass
 
 
 def read_input(filepath: str) -> str:
     """Read input."""
-    with open(filepath, "r") as f:
+    with open(filepath, "r", encoding="utf8") as f:
         return [line.replace("\n", "") for line in f.readlines()]
 
 
