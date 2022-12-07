@@ -58,9 +58,9 @@ class Dir:
     def get_subdirs(self) -> list[Dir]:
         """Get all sub directories (recursively)."""
         dirs = list(self.dirs)
-        for d in dirs:
+        for d in self.dirs:
             dirs += d.get_subdirs()
-        return list(set(dirs))
+        return dirs
         # not really sure why duplicates end up here :(
 
 
