@@ -61,6 +61,7 @@ class Dir:
         for d in dirs:
             dirs += d.get_subdirs()
         return list(set(dirs))
+        # not really sure why duplicates end up here :(
 
 
 def build_tree(lines: list[str]) -> Dir:
@@ -104,12 +105,24 @@ def star1(lines: list[str]) -> int:
     return total
 
 
-def star2(text: str) -> int:
+def star2(lines: list[str]) -> int:
     """Part2."""
-    pass
+    required_space = 30000000
+    total_space = 70000000
+    root = build_tree(lines)
+    to_be_deleted = required_space - (total_space - root.get_size())
+    dirs = root.get_subdirs()
+    sizes = [d.get_size() for d in dirs]
+    sizes.sort(reverse=True)
+    previous = 0
+    for s in sizes:
+        if s < to_be_deleted:
+            return previous
+        previous = s
+    return 0
 
 
-def read_input(filepath: str) -> str:
+def read_input(filepath: str) -> list[str]:
     """Read input."""
     with open(filepath, "r", encoding="utf8") as f:
         return [line.replace("\n", "") for line in f.readlines()]

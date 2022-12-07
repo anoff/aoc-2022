@@ -39,4 +39,4 @@ def test_star1():
 
 
 def test_star2():
-    pass
+    assert star2(TEST_INPUT) == 24933642
