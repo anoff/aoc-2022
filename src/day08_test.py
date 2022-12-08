@@ -1,5 +1,5 @@
 # flake8: noqa
-from .day08 import star1, star2, check_visibility, parse_input
+from .day08 import scenic_score, star1, star2, check_visibility, parse_input
 
 TEST_INPUT = """30373
 25512
@@ -74,5 +74,15 @@ def test_star1():
     assert star1(TEST_INPUT) == 21
 
 
+def test_scenic_score():
+    trees = parse_input(TEST_INPUT)
+    assert scenic_score(trees, 2, 1) == 4
+    assert scenic_score(trees, 2, 3) == 8
+    assert scenic_score(trees, 0, 3) == 0
+    assert scenic_score(trees, 2, 4) == 0
+    assert scenic_score(trees, 2, 0) == 0
+    assert scenic_score(trees, 4, 1) == 0
+
+
 def test_star2():
-    pass
+    assert star2(TEST_INPUT) == 8

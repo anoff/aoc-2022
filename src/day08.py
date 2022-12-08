@@ -90,24 +90,65 @@ def star1(lines: list[str]) -> int:
     return total_trees
 
 
-def star2(lines: Trees) -> int:
+def scenic_score(trees: Trees, x0: int, y0: int) -> int:
+    """Calculate the product of view distance in each direction."""
+    trees_left, trees_right, trees_top, trees_bottom = [0, 0, 0, 0]
+    n_rows = len(trees)
+    n_cols = len(trees[0])
+    # look right ->
+    start_h = trees[y0][x0]
+    for x in range(x0 + 1, n_cols):
+        height = trees[y0][x]
+        trees_right += 1
+        if height >= start_h:
+            break
+    # look left <-
+    for x in range(x0 - 1, -1, -1):
+        height = trees[y0][x]
+        trees_left += 1
+        if height >= start_h:
+            break
+    # look down V
+    for y in range(y0 + 1, n_rows):
+        height = trees[y][x0]
+        trees_bottom += 1
+        if height >= start_h:
+            break
+    # look up ^
+    for y in range(y0 - 1, -1, -1):
+        height = trees[y][x0]
+        trees_top += 1
+        if height >= start_h:
+            break
+    score = trees_left * trees_right * trees_top * trees_bottom
+    return score
+
+
+def star2(lines: list[str]) -> int:
     """Part2."""
-    pass
+    trees = parse_input(lines)
+    max_score = 0
+    for y, _ in enumerate(trees):
+        for x, _ in enumerate(trees[0]):
+            score = scenic_score(trees, x, y)
+            if score > max_score:
+                print(x, y)
+                max_score = score
+    return max_score
 
 
 def parse_input(text: list[str]) -> Trees:
     """Convert text to int map."""
     trees = []
-    for l in text:
-        trees.append([int(c) for c in l])
+    for line in text:
+        trees.append([int(c) for c in line])
     return trees
 
 
 def read_input(filepath: str) -> list[str]:
     """Read input."""
-    output: Trees = []
     with open(filepath, "r", encoding="utf8") as f:
-        return [l.replace("\n", "") for l in f.readlines()]
+        return [line.replace("\n", "") for line in f.readlines()]
 
 
 if __name__ == "__main__":
