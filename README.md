@@ -18,4 +18,3 @@ Code auto-formatted with black
 
 - TDD on top level is always worth it
 - adding tests for smaller steps creates very modular code..maybe too many functions, seem to lack cohesion because all functions are only used one time
- 
