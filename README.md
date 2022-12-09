@@ -13,6 +13,7 @@ Code auto-formatted with black
 
 - `set()`s are awesome to get unique elements from a list
 - `set()`s also allow you to find intersections and overlaps
+- need to tell VS Code to use `setup.cfg` for activated linters (see `.vscode/settings.json`)
 
 ### Programming approach
 
