@@ -28,15 +28,15 @@ $ ls
 )
 
 
-def test_build_tree():
+def test_build_tree() -> None:
     root = build_tree(TEST_INPUT)
     assert len(root.dirs) == 2
     assert len(root.files) == 2
 
 
-def test_star1():
+def test_star1() -> None:
     assert star1(TEST_INPUT) == 95437
 
 
-def test_star2():
+def test_star2() -> None:
     assert star2(TEST_INPUT) == 24933642

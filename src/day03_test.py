@@ -18,26 +18,26 @@ CrZsJsPPZsGzwwsLwLmpwMDw""".split(
 )
 
 
-def test_get_duplicate_item():
+def test_get_duplicate_item() -> None:
     assert get_duplicate_item("vJrwpWtwJgWr", "hcsFMMfFFhFp") == "p"
     assert get_duplicate_item("PmmdzqPrV", "vPwwTWBwg") == "P"
 
 
-def test_split_string():
+def test_split_string() -> None:
     assert split_string("vJrwpWtwJgWrhcsFMMfFFhFp") == ("vJrwpWtwJgWr", "hcsFMMfFFhFp")
     assert split_string("PmmdzqPrVvPwwTWBwg") == ("PmmdzqPrV", "vPwwTWBwg")
 
 
-def test_get_score():
+def test_get_score() -> None:
     assert get_score("p") == 16
     assert get_score("P") == 42
 
 
-def test_star1():
+def test_star1() -> None:
     assert star1(TEST_INPUT) == 157
 
 
-def test_get_badge():
+def test_get_badge() -> None:
     assert (
         get_badge(
             """vJrwpWtwJgWrhcsFMMfFFhFp
@@ -60,5 +60,5 @@ CrZsJsPPZsGzwwsLwLmpwMDw""".split(
     )
 
 
-def test_star2():
+def test_star2() -> None:
     assert star2(TEST_INPUT) == 70

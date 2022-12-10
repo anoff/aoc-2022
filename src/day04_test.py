@@ -14,9 +14,9 @@ TEST_INPUT = """2-4,6-8
 )
 
 
-def test_star1():
+def test_star1() -> None:
     assert star1(TEST_INPUT) == 2
 
 
-def test_star2():
+def test_star2() -> None:
     assert star2(TEST_INPUT) == 4

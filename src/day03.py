@@ -22,9 +22,9 @@ def get_score(item: str) -> int:
         return n
 
 
-def star1(input) -> int:
+def star1(text: list[str]) -> int:
     score = 0
-    for rucksack in input:
+    for rucksack in text:
         (list1, list2) = split_string(rucksack)
         duplicate = get_duplicate_item(list1, list2)
         score += get_score(duplicate)
@@ -49,9 +49,9 @@ def get_badge(rucksacks: list[str]) -> str:
     return ""
 
 
-def star2(input) -> int:
+def star2(text: list[str]) -> int:
     # split into groups of 3
-    groups = [input[i : i + 3] for i in range(0, len(input), 3)]
+    groups = [text[i : i + 3] for i in range(0, len(text), 3)]
     scores = [get_score(get_badge(g)) for g in groups]
     return sum(scores)
 

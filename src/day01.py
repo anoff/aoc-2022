@@ -13,19 +13,19 @@ def star_2() -> None:
 
 def read_input(filepath: str) -> list[list[int]]:
     """Read input and parse it."""
-    input = list()
-    entry: list
+    text = list()
+    entry: list[int]
     with open(filepath, "r") as f:
         entry = list()
         for line in f:
             if line == "\n":
-                input.append(entry)
+                text.append(entry)
                 entry = list()
             else:
                 entry.append(int(line))
-    if len(entry):
-        input.append(entry)
-    return input
+    if len(entry) > 0:
+        text.append(entry)
+    return text
 
 
 if __name__ == "__main__":

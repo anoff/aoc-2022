@@ -14,7 +14,7 @@ move 1 from 1 to 2""".split(
 )
 
 
-def test_parse_input():
+def test_parse_input() -> None:
     crates, moves = parse_input(TEST_INPUT)
     assert crates == [["N", "Z"], ["D", "C", "M"], ["P"]]
     assert moves[0]["from"] == 2
@@ -23,9 +23,9 @@ def test_parse_input():
     assert moves[3]["to"] == 2
 
 
-def test_star1():
+def test_star1() -> None:
     assert star1(TEST_INPUT) == "CMZ"
 
 
-def test_star2():
+def test_star2() -> None:
     assert star2(TEST_INPUT) == "MCD"

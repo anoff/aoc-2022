@@ -10,7 +10,7 @@ TEST_INPUT = """30373
 )
 
 
-def test_check_visibility():
+def test_check_visibility() -> None:
     trees = parse_input(TEST_INPUT)
     visible = check_visibility(trees, (1, 0))
     assert visible[0][0] == True
@@ -70,11 +70,11 @@ def test_check_visibility():
     assert visible[3][2] == True
 
 
-def test_star1():
+def test_star1() -> None:
     assert star1(TEST_INPUT) == 21
 
 
-def test_scenic_score():
+def test_scenic_score() -> None:
     trees = parse_input(TEST_INPUT)
     assert scenic_score(trees, 2, 1) == 4
     assert scenic_score(trees, 2, 3) == 8
@@ -84,5 +84,5 @@ def test_scenic_score():
     assert scenic_score(trees, 4, 1) == 0
 
 
-def test_star2():
+def test_star2() -> None:
     assert star2(TEST_INPUT) == 8

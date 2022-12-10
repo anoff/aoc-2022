@@ -2,7 +2,7 @@
 from .day06 import star1, star2
 
 
-def test_star1():
+def test_star1() -> None:
     assert star1("mjqjpqmgbljsphdztnvjfqwrcgsmlb") == 7
     assert star1("bvwbjplbgvbhsrlpgdmjqwftvncz") == 5
     assert star1("nppdvjthqldpwncqszvftbrmjlhg") == 6
@@ -10,7 +10,7 @@ def test_star1():
     assert star1("zcfzfwzzqfrljwzlrfnpqdbhtmscgvjw") == 11
 
 
-def test_star2():
+def test_star2() -> None:
     assert star2("mjqjpqmgbljsphdztnvjfqwrcgsmlb") == 19
     assert star2("bvwbjplbgvbhsrlpgdmjqwftvncz") == 23
     assert star2("nppdvjthqldpwncqszvftbrmjlhg") == 23

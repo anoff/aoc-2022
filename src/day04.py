@@ -1,6 +1,6 @@
-def star1(input) -> int:
+def star1(text: list[str]) -> int:
     count = 0
-    for g in input:
+    for g in text:
         # get start/end positions
         e1, e2 = g.split(",")
         e1_1, e1_2 = [int(c) for c in e1.split("-")]
@@ -10,16 +10,16 @@ def star1(input) -> int:
     return count
 
 
-def star2(input) -> int:
+def star2(text: list[str]) -> int:
     count = 0
-    for g in input:
+    for g in text:
         # get start/end positions
         e1, e2 = g.split(",")
         e1_1, e1_2 = [int(c) for c in e1.split("-")]
         e2_1, e2_2 = [int(c) for c in e2.split("-")]
         s1 = set(range(e1_1, e1_2 + 1))
         s2 = set(range(e2_1, e2_2 + 1))
-        if len(list(s1.intersection(s2))):
+        if len(list(s1.intersection(s2))) > 0:
             count += 1
     return count
 

@@ -62,17 +62,17 @@ def get_hand(sign1: str, result: str) -> str:
     return "-"
 
 
-def star1(input) -> int:
+def star1(text: list[str]) -> int:
     score = 0
-    for line in input:
+    for line in text:
         sign1, sign2 = line.strip().split(" ")
         score += round_score(sign1, sign2) + hand_score(sign2)
     return score
 
 
-def star2(input) -> int:
+def star2(text: list[str]) -> int:
     score = 0
-    for line in input:
+    for line in text:
         sign1, result = line.strip().split(" ")
         sign2 = get_hand(sign1, result)
         score += round_score(sign1, sign2) + hand_score(sign2)

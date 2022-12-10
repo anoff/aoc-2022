@@ -24,7 +24,7 @@ class P2D:
         self.y -= other.y
         return self
 
-    def __eq__(self, other: object):
+    def __eq__(self, other: object) -> bool:
         """Compare equality."""
         if isinstance(other, P2D):
             return self.x == other.x and self.y == other.y
