@@ -169,4 +169,4 @@ def test_star1() -> None:
 
 
 def test_star2() -> None:
-    pass
+    star2(TEST_INPUT)
