@@ -1,5 +1,5 @@
 from __future__ import annotations
-from typing import Callable, TypeAlias, Union
+from typing import TypeAlias, Union
 
 Height: TypeAlias = int
 
@@ -150,6 +150,9 @@ class Hoshi:
     def get_path(node: Node) -> list[Node]:
         """Backtrack the complete path to a node."""
         current = node
+
+        if not isinstance(current, Node):
+            return []
         path = [current]
         while current.parent:
             path.append(current.parent)
@@ -200,19 +203,53 @@ def find_start_goal(lines: list[str]) -> tuple[P2D]:
 
 
 def star1(lines: list[str]) -> int:
-    """Part1."""
+    """Part1.
+
+    Well..guess A-star was a bit too much for this.
+    Turns out you can just step from a..b..c
+    Did not realize you have to move a->z before going to the end
+    """
     start, goal = find_start_goal(lines)
     star = Hoshi(lines)
     node = star.find_path(start, goal)
     p = Hoshi.get_path(node)
-    for n in p:
-        print(n.pos)
+    # for n in p:
+    #     print(n.pos)
     return len(p) - 1
 
 
 def star2(lines: list[str]) -> str:
-    """Part2."""
-    return 0
+    """Part2.
+
+    This should be prettier..but smart brute force might work?
+    Realized there are too many a's, but the pattern is that
+    there is only few bs and each b has an a next to it.
+    So finding the closest b + 1 should give the answer.
+    """
+    start, goal = find_start_goal(lines)
+    star = Hoshi(lines)
+
+    possible_starts = []
+    for y, line in enumerate(lines):
+        for x, c in enumerate(line):
+            if c == "b":
+                possible_starts.append(P2D(x, y))
+
+    node = star.find_path(start, goal)
+    p = Hoshi.get_path(node)
+    shortest_path = len(p) - 1
+    possible_starts.sort(key=lambda s: s.distance(goal))
+    print(f"Found {len(possible_starts)} starting positions..")
+    for s in possible_starts:
+        node = star.find_path(s, goal)
+        p = Hoshi.get_path(node)
+        distance = len(p) - 1
+        if distance > 0:
+            print(s, distance)
+        if distance < shortest_path and distance > 0:
+            shortest_path = distance
+
+    return shortest_path + 1
 
 
 def read_input(filepath: str) -> list[str]:

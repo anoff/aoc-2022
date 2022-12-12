@@ -23,3 +23,4 @@ Code auto-formatted with black
 - just because you think that two implementations do the same thing, does not mean they do (test them both)
 - using `dict()` or `list()` for instantiation is slower than using the literals `{}`, `[]`
 - using `typing.Dict/List` was necessary pre Python 3.10 but now `dict/list/tuple[]` are preferred solutions without additional imports
+- a customized solution may be a lot faster than a generic one (day12)
