@@ -57,7 +57,7 @@ class Node:
     g: distance between the current node and the start node
     h: (heuristic) estimated distance from the current node to the target"""
 
-    parent: Node
+    parent: Union[Node, None]
     pos: P2D
     g: int
     h: int
@@ -76,6 +76,7 @@ class Node:
             return self.pos == other.pos
         elif isinstance(other, P2D):
             return self.pos == other
+        return super().__eq__(other)
 
 
 class Hoshi:

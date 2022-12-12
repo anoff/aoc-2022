@@ -89,23 +89,21 @@ def star1(lines: list[str]) -> int:
     return top_throwers[0].n_throw * top_throwers[1].n_throw
 
 
-def star2(lines: list[str]) -> str:
+def star2(lines: list[str]) -> int:
     """Part2."""
     rounds = 10000
     monkeys = parse_input(lines)
-    # prev_throws = [0] * len(monkeys)
+    # use common denominator as modulo operator
+    mod_op = 1
+    for m in monkeys:
+        mod_op *= m.mod
     for r in range(rounds):
         for active_monkey in monkeys:
             while len(active_monkey.items) > 0:
                 target_monkey, value = active_monkey.throw2()
-                monkeys[target_monkey].add_item(value % monkeys[target_monkey].mod)
-        # print(f"== After round: {r} ==")
-        # for ix, m in enumerate(monkeys):
-        #     print(f"{m.monkey_id}; {m.n_throw} (+{m.n_throw - prev_throws[ix]})")
-        #     prev_throws[ix] = m.n_throw
+                monkeys[target_monkey].add_item(value % mod_op)
 
     top_throwers = sorted(monkeys, key=lambda m: m.n_throw, reverse=True)
-    print(top_throwers[0].n_throw, top_throwers[1].n_throw)
     return top_throwers[0].n_throw * top_throwers[1].n_throw
 
 
