@@ -1,5 +1,5 @@
 from __future__ import annotations
-from typing import Callable, TypeAlias
+from typing import TypeAlias
 
 OpCode: TypeAlias = tuple[str, int]
 

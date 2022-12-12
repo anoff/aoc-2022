@@ -1,5 +1,5 @@
 # flake8: noqa
-from .day11 import star1, star2
+from .dayXX import star1, star2
 
 TEST_INPUT = """
 """.split(

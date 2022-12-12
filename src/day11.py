@@ -93,7 +93,7 @@ def star2(lines: list[str]) -> str:
     """Part2."""
     rounds = 10000
     monkeys = parse_input(lines)
-    prev_throws = [0] * len(monkeys)
+    # prev_throws = [0] * len(monkeys)
     for r in range(rounds):
         for active_monkey in monkeys:
             while len(active_monkey.items) > 0:
