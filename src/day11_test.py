@@ -37,4 +37,4 @@ def test_star1() -> None:
 
 
 def test_star2() -> None:
-    assert star2(TEST_INPUT) == 0
+    assert star2(TEST_INPUT) == 2713310158

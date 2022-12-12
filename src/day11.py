@@ -14,10 +14,12 @@ class Monkey:
     op_fn: Callable[[WorryLevel], WorryLevel]
     monkey_id: int
     n_throw: int
+    mod: int
 
     def __init__(
         self,
         monkey_id: int,
+        mod: int,
         test_fn: Callable[[WorryLevel], MonkeyID],
         op_fn: Callable[[WorryLevel], WorryLevel],
     ):
@@ -25,6 +27,7 @@ class Monkey:
 
         Args:
             monkey_id: monkey id
+            mod: the monkeys unique modulo operator
             test_fn: function that gets called with current item value
                 returns the monkey that will receive the item
             op_fn: change of worry level for item, gets item value passed
@@ -35,6 +38,7 @@ class Monkey:
         self.test_fn = test_fn
         self.op_fn = op_fn
         self.n_throw = 0
+        self.mod = mod
 
     def add_item(self, value: WorryLevel) -> None:
         """Add a new item to the monkeys stack."""
@@ -49,6 +53,18 @@ class Monkey:
         new_value = self.calc_new_value(item)
         target_monkey = self.test_fn(new_value)
         self.n_throw += 1
+        return (target_monkey, new_value)
+
+    def throw2(self) -> tuple[MonkeyID, WorryLevel]:
+        """Star2: Initate throwing the next item in the monkeys stack.
+
+        Returns:
+            tuple of monkey ID that receives the item and the new value of the item."""
+        item = self.items.pop(0)
+        new_value = self.op_fn(item)
+        target_monkey = self.test_fn(new_value)
+        self.n_throw += 1
+        # print(f"{self.monkey_id} -> {target_monkey}: {new_value}\t({item})")
         return (target_monkey, new_value)
 
     def calc_new_value(self, value: WorryLevel) -> WorryLevel:
@@ -75,7 +91,22 @@ def star1(lines: list[str]) -> int:
 
 def star2(lines: list[str]) -> str:
     """Part2."""
-    return 0
+    rounds = 10000
+    monkeys = parse_input(lines)
+    prev_throws = [0] * len(monkeys)
+    for r in range(rounds):
+        for active_monkey in monkeys:
+            while len(active_monkey.items) > 0:
+                target_monkey, value = active_monkey.throw2()
+                monkeys[target_monkey].add_item(value % monkeys[target_monkey].mod)
+        # print(f"== After round: {r} ==")
+        # for ix, m in enumerate(monkeys):
+        #     print(f"{m.monkey_id}; {m.n_throw} (+{m.n_throw - prev_throws[ix]})")
+        #     prev_throws[ix] = m.n_throw
+
+    top_throwers = sorted(monkeys, key=lambda m: m.n_throw, reverse=True)
+    print(top_throwers[0].n_throw, top_throwers[1].n_throw)
+    return top_throwers[0].n_throw * top_throwers[1].n_throw
 
 
 def parse_input(text: list[str]) -> list[Monkey]:
@@ -121,6 +152,7 @@ def parse_input(text: list[str]) -> list[Monkey]:
 
         m = Monkey(
             monkey_id,
+            mod,
             get_test_fn(mod, true_target, false_target),
             get_op_fn(op_value, op_operand),
         )
