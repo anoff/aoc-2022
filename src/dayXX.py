@@ -9,7 +9,7 @@ def star1(lines: list[str]) -> int:
     return 0
 
 
-def star2(lines: list[str]) -> str:
+def star2(lines: list[str]) -> int:
     """Part2."""
     return 0
 

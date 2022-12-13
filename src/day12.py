@@ -148,19 +148,19 @@ class Hoshi:
         return ord(target_h) - ord(start_h) <= 1
 
     @staticmethod
-    def get_path(node: Node) -> list[Node]:
+    def get_path(node: Union[Node, None]) -> list[Node]:
         """Backtrack the complete path to a node."""
-        current = node
 
-        if not isinstance(current, Node):
+        if not isinstance(node, Node):
             return []
+        current = node
         path = [current]
         while current.parent:
             path.append(current.parent)
             current = current.parent
         return path[::-1]
 
-    def find_path(self, start: P2D, target: P2D) -> Node:
+    def find_path(self, start: P2D, target: P2D) -> Union[Node, None]:
         """Do the path finding thing.
 
         Returns:
@@ -183,6 +183,7 @@ class Hoshi:
                         child.h = child.pos.distance(target)
                         child.f = child.g + child.f
                         self.add_open(child)
+        return None
 
 
 def step_size(source: str, target: str) -> int:
@@ -190,7 +191,7 @@ def step_size(source: str, target: str) -> int:
     return ord(target) - ord(source)
 
 
-def find_start_goal(lines: list[str]) -> tuple[P2D]:
+def find_start_goal(lines: list[str]) -> tuple[P2D, P2D]:
     """Extract start and end points from list."""
     start = P2D(-1, -1)
     end = P2D(-1, -1)
@@ -213,13 +214,14 @@ def star1(lines: list[str]) -> int:
     start, goal = find_start_goal(lines)
     star = Hoshi(lines)
     node = star.find_path(start, goal)
+    assert isinstance(node, Node)
     p = Hoshi.get_path(node)
     # for n in p:
     #     print(n.pos)
     return len(p) - 1
 
 
-def star2(lines: list[str]) -> str:
+def star2(lines: list[str]) -> int:
     """Part2.
 
     This should be prettier..but smart brute force might work?
